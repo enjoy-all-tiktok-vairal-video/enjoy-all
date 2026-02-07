@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Unlock Content</title>
+
+<script src='//libtl.com/sdk.js'
+        data-zone='10480960'
+        data-sdk='show_10480960'></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="ads-page">
+
+<h3>🔓 Ads দেখুন, তারপর বাটন আসবে</h3>
+
+<a id="playBtn" class="play-btn" style="display:none;">
+▶️ Play Video
+</a>
+
+<script>
+const id = new URLSearchParams(location.search).get("item");
+
+const links = {
+  1: "https://YOUR_LINK_1",
+  2: "https://YOUR_LINK_2",
+  3: "https://YOUR_LINK_3"
+};
+
+document.getElementById("playBtn").href = links[id];
+
+show_10480960().then(()=>{
+  setTimeout(()=>{
+    document.getElementById("playBtn").style.display = "inline-block";
+  },15000); // 15 seconds
+});
+</script>
+
+</body>
+</html>
