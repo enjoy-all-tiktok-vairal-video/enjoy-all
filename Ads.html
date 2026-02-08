@@ -1,40 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Unlock Content</title>
+<title>Unlock</title>
 
 <script src='//libtl.com/sdk.js'
-        data-zone='10480960'
-        data-sdk='show_10480960'></script>
+ data-zone='10480960'
+ data-sdk='show_10480960'></script>
 
-<link rel="stylesheet" href="style.css">
+<style>
+body{
+  background:#000;
+  color:#fff;
+  text-align:center;
+  padding-top:60px;
+  font-family:Arial;
+}
+button{
+  padding:12px 20px;
+  background:#00cc66;
+  border:none;
+  border-radius:6px;
+  color:#fff;
+  font-size:18px;
+  display:none;
+}
+</style>
 </head>
 
-<body class="ads-page">
+<body>
 
-<h3>🔓 Ads দেখুন, তারপর বাটন আসবে</h3>
-
-<a id="playBtn" class="play-btn" style="display:none;">
-▶️ Play Video
-</a>
+<h2>🔓 Unlocking…</h2>
+<p id="status">Watching ads</p>
+<button id="playBtn">▶ Play Video</button>
 
 <script>
-const id = new URLSearchParams(location.search).get("item");
+let count = 0;
+let target = localStorage.getItem("unlockTarget");
 
-const links = {
-  1: "https://YOUR_LINK_1",
-  2: "https://YOUR_LINK_2",
-  3: "https://YOUR_LINK_3"
+function showAd(){
+  show_10480960().then(() => {
+    count++;
+    status.innerText = `Ad ${count}/3 completed`;
+    if(count < 3){
+      setTimeout(showAd, 1000);
+    } else {
+      playBtn.style.display = "inline-block";
+    }
+  });
+}
+
+showAd();
+
+playBtn.onclick = () => {
+  let h = JSON.parse(localStorage.getItem("history") || "[]");
+  if(!h.includes(target)) h.push(target);
+  localStorage.setItem("history", JSON.stringify(h));
+  localStorage.setItem("unlockedPost", target);
+  location.href = "index.html";
 };
-
-document.getElementById("playBtn").href = links[id];
-
-show_10480960().then(()=>{
-  setTimeout(()=>{
-    document.getElementById("playBtn").style.display = "inline-block";
-  },15000); // 15 seconds
-});
 </script>
 
 </body>
