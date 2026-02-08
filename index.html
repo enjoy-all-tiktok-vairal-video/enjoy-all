@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENJOY All</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- HOME -->
+<div id="home" class="page active">
+  <div class="home-header">
+    <h2>🏠 ENJOY All</h2>
+    <input type="text" id="searchBox" placeholder="🔍 Search..." onkeyup="searchPost()">
+  </div>
+</div>
+
+<!-- BROWSER -->
+<div id="browser" class="page">
+  <h2>📂 Browser</h2>
+
+  <div class="grid">
+
+    <div class="card post" id="post-movie1" data-title="hot movie">
+      <img src="images/movie1.jpg" class="thumb">
+      <button onclick="openAds('post-movie1')">🔓 Unlock</button>
+    </div>
+
+    <div class="card post" id="post-movie2" data-title="drama">
+      <img src="images/movie2.jpg" class="thumb">
+      <button onclick="openAds('post-movie2')">🔓 Unlock</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- PROFILE -->
+<div id="profile" class="page">
+  <h2>👤 Profile</h2>
+
+  <div class="card">
+    <img src="images/profile.png" class="avatar">
+    <h3 id="tgName">Guest User</h3>
+    <p id="tgUsername">@guest</p>
+  </div>
+
+  <h4>🔓 Unlocked History</h4>
+  <ul id="historyList"></ul>
+</div>
+
+<!-- SUPPORT -->
+<div id="support" class="page">
+  <h2>🆘 Support</h2>
+
+  <div class="support-list">
+    <a href="https://t.me/tiktokvairalvideo2026" target="_blank">🎬 Movie</a>
+    <a href="https://t.me/tiktokvairalvideo2026" target="_blank">👀 Drama</a>
+    <a href="https://t.me/tiktokvairalvideo2026" target="_blank">💋 Hot Movie</a>
+    <a href="https://t.me/tiktokvairalvideo2026" target="_blank">🫦 Viral Link</a>
+    <a href="https://t.me/tiktokvairalvideo2026" target="_blank">💾 Backup Channel</a>
+    <a href="https://t.me/tiktokvairalvideo2026" target="_blank">📱 TikTok</a>
+    <a href="https://t.me/tiktokvairalvideo2026" target="_blank">👥 Group</a>
+  </div>
+
+  <p class="join-text">আমাদের হারাতে না চাইলে জয়েন হয়ে থাকেন ❤️</p>
+</div>
+
+<!-- NAV -->
+<div class="bottom-nav">
+  <button onclick="openPage('home')" class="active">Home</button>
+  <button onclick="openPage('browser')">Browser</button>
+  <button onclick="openPage('profile')">Profile</button>
+  <button onclick="openPage('support')">Support</button>
+</div>
+
+<script>
+function openPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function openAds(postId){
+  localStorage.setItem("unlockTarget", postId);
+  location.href="ads.html";
+}
+
+function searchPost(){
+  let v = searchBox.value.toLowerCase();
+  document.querySelectorAll(".post").forEach(p=>{
+    p.style.display = p.dataset.title.includes(v) ? "block" : "none";
+  });
+}
+
+// After unlock + history + Telegram user
+window.onload = ()=>{
+  let unlocked = localStorage.getItem("unlockedPost");
+  if(unlocked){
+    openPage('browser');
+    let el = document.getElementById(unlocked);
+    if(el){
+      el.classList.add("unlocked");
+      let btn = el.querySelector("button");
+      btn.innerText="▶ Play Video";
+      btn.onclick=()=>location.href="https://enjoy-all-tiktok-vairal-video.github.io/Pppc";
+      el.scrollIntoView({behavior:"smooth"});
+    }
+    localStorage.removeItem("unlockedPost");
+  }
+
+  let history = JSON.parse(localStorage.getItem("history")||"[]");
+  let list = document.getElementById("historyList");
+  if(list){
+    list.innerHTML = history.length ? "" : "<li>No unlock yet</li>";
+    history.forEach(h=>{
+      let li=document.createElement("li");
+      li.innerText=h;
+      list.appendChild(li);
+    });
+  }
+
+  if (window.Telegram && Telegram.WebApp) {
+    Telegram.WebApp.ready();
+    let u = Telegram.WebApp.initDataUnsafe.user;
+    if (u) {
+      document.getElementById("tgName").innerText =
+        u.first_name + (u.last_name ? " " + u.last_name : "");
+      document.getElementById("tgUsername").innerText =
+        u.username ? "@" + u.username : "No username";
+    }
+  }
+}
+</script>
+
+</body>
+</html>
