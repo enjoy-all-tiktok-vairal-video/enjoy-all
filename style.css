@@ -1,155 +1,80 @@
-/* ===== Global ===== */
 body{
   margin:0;
-  font-family: Arial, Helvetica, sans-serif;
-  background:#0f0f0f;
-  color:#ffffff;
-  padding-bottom:70px;
-}
-
-h1, h2, h3, h4{
-  margin:8px 0;
-}
-
-/* ===== App Title ===== */
-.app-title{
-  text-align:center;
-  color:#ff0033;
-  margin:15px 0 5px;
-  font-size:26px;
-}
-
-/* ===== Pages ===== */
-.page{
-  display:none;
-  padding:15px;
-}
-
-.page.active{
-  display:block;
-}
-
-/* ===== Video Card ===== */
-.video-card{
-  background:#1c1c1c;
-  padding:12px;
-  border-radius:12px;
-  margin-bottom:15px;
-}
-
-.thumb{
-  width:100%;
-  border-radius:10px;
-  display:block;
-}
-
-/* ===== Buttons ===== */
-.unlock-btn,
-.play-btn{
-  display:block;
-  margin-top:10px;
-  padding:12px;
-  background:#ff0033;
+  background:#111;
   color:#fff;
-  text-decoration:none;
-  text-align:center;
-  border-radius:8px;
-  font-weight:bold;
+  font-family:Arial;
 }
+.page{display:none;padding:15px}
+.page.active{display:block}
 
-.unlock-btn:active,
-.play-btn:active{
-  opacity:0.8;
-}
-
-/* ===== Bottom Navigation ===== */
-.bottom-nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  height:60px;
-  background:#1c1c1c;
+.home-header{
   display:flex;
-  border-top:1px solid #2a2a2a;
+  justify-content:space-between;
+  align-items:center;
 }
-
-.bottom-nav button{
-  flex:1;
-  background:none;
+input{
+  padding:6px;
+  border-radius:6px;
   border:none;
-  color:#aaaaaa;
-  font-size:14px;
 }
 
-.bottom-nav button.active{
-  color:#ff0033;
-  font-weight:bold;
-}
-
-/* ===== Profile ===== */
-.profile-card{
-  text-align:center;
-}
-
-.avatar{
-  width:80px;
-  height:80px;
-  border-radius:50%;
-  border:2px solid #ff0033;
-  margin-bottom:10px;
-}
-
-.free{
-  color:#00ff88;
-  font-weight:bold;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
 }
 
 .card{
   background:#1c1c1c;
-  padding:15px;
-  border-radius:12px;
-  margin-bottom:15px;
-}
-
-.actions{
-  display:flex;
-  gap:10px;
-}
-
-.actions button{
-  flex:1;
-  padding:12px;
-  background:#2a2a2a;
-  border:none;
-  color:#ffffff;
+  padding:10px;
   border-radius:8px;
+  text-align:center;
 }
 
-/* ===== Support Page ===== */
+.thumb{width:100%;border-radius:6px}
+
+button{
+  width:100%;
+  padding:8px;
+  margin-top:6px;
+  background:#ff0055;
+  border:none;
+  color:#fff;
+  border-radius:5px;
+}
+
+.unlocked{border:2px solid #00ff99}
+
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  display:flex;
+  background:#000;
+}
+.bottom-nav button{
+  flex:1;
+  background:none;
+  color:#aaa;
+}
+
 .support-list a{
   display:block;
-  background:#1c1c1c;
-  padding:14px;
-  margin-bottom:10px;
-  border-radius:10px;
-  color:#ffffff;
+  background:#222;
+  margin:6px 0;
+  padding:10px;
+  border-radius:6px;
   text-decoration:none;
+  color:#fff;
 }
 
 .join-text{
-  margin-top:25px;
   text-align:center;
-  font-size:14px;
-  opacity:0.8;
+  margin-top:10px;
+  color:#ff8080;
 }
 
-/* ===== Ads Page ===== */
-.ads-page{
-  text-align:center;
-  padding:40px 20px;
-}
-
-.ads-page h3{
-  margin-bottom:20px;
+.avatar{
+  width:80px;
+  border-radius:50%;
 }
